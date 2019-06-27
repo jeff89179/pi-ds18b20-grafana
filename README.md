@@ -2,11 +2,20 @@
 
 THIS IS A WORK IN PROGRESS
 
-I lost the original link to where I found this python script. Once I find it again, i'll credit the original author.
-
-
-
+Description
 - The purpose of this is to be able to graph multiple ds18b20 temperature probes connected to a Raspberry Pi.
 - Currently, my setup involves two separately running python scripts that run at reboot via cron.
 - Use the two t#-logger.py scripts as templates. Some things will have to be changed to fit your own setup (such as the w1 identifiers).
 
+Logger Scripts
+- I lost the original link to where I found this python script. Once I find it again, i'll credit the original author since this is not my own work.
+
+
+
+
+
+### "t*_logger.py" scripts and "t*-watchdog" scripts should all be installed in /usr/bin and make them executable with chmod +x ###
+
+Watchdog Scripts
+- scripts came from here... https://stackoverflow.com/questions/696839/how-do-i-write-a-bash-script-to-restart-a-process-if-it-dies
+- each sensor must have its own script

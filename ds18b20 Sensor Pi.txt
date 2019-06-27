@@ -1,0 +1,100 @@
+ds18b20 Sensor to CAT 6 extension cable
+
+1 - black (ground) >>> solder >>> stripped white/green wire >>> RJ11-1
+2 - red (voltage) >>> solder >>> stripped blue wire  >>> RJ11-2
+3 - yellow (data/signal) >>> solder >>> stripped green wire >>> RJ11-4
+
+
+Raspberry Pi End Jumper Interface
+
+--------------RJ45 JACK--------------
+    RJ11 (USOC)     RJ45 (T568B)
+1 - black           white/green
+2 - red             blue
+3 - green           ---- (not used)
+4 - yellow          green
+
+black jumper
+un-terminated > male pin > crimp < male pin < female < Pi
+
+red jumper
+un-terminated > male pin > crimp < male pin < female < Pi
+
+4.7k Resistor > red crimp, yellow crimp
+
+yellow jumper
+un-terminated > male pin > crimp < male pin < female < Pi
+
+
+--------------Temporary Wiring Guide--------------
+Sensor                                     Coupler
+black                  >>>                 yellow
+yellow                 >>>                 black
+red                    >>>                 red
+
+--------------Device Identifiers--------------
+28-0516a47f87ff...A01
+28-01131fb56f38...B01
+28-0316a194c4ff...B05 (original)
+28-041783780fff...A05 (original)
+
+
+--------------/usr/bin/temperature-------------
+
+#! /bin/bash
+
+### B05 ###
+# Read Temperature
+tempread=`cat /sys/bus/w1/devices/28-0316a194c4ff/w1_slave`
+# Format
+temp=`echo "scale=2; "\`echo ${tempread##*=}\`" / 1000" | bc`
+
+# Output
+#echo "Sensor 1 (B05) temperature is " $temp "  C"
+
+# Output in Fahrenheit
+# formula Tf=(9/5)*Tc+32
+tf=$(echo "scale=2;((9/5) * $temp) + 32" |bc)
+echo "Sensor 1 (B05) $temp C = $tf F"
+
+### A05 ###
+# Read Temperature
+tempread=`cat /sys/bus/w1/devices/28-041783780fff/w1_slave`
+# Format
+temp=`echo "scale=2; "\`echo ${tempread##*=}\`" / 1000" | bc`
+
+# Output
+#echo "Sensor 2 (A05) temperature is " $temp "  C"
+
+# Output in Fahrenheit
+# formula Tf=(9/5)*Tc+32
+tf=$(echo "scale=2;((9/5) * $temp) + 32" |bc)
+echo "Sensor 2 (A05) $temp C = $tf F"
+
+### A01 ###
+# Read Temperature
+tempread=`cat /sys/bus/w1/devices/28-0516a47f87ff/w1_slave`
+# Format
+temp=`echo "scale=2; "\`echo ${tempread##*=}\`" / 1000" | bc`
+
+# Output
+#echo "Sensor 3 (A01) temperature is " $temp "  C"
+
+# Output in Fahrenheit
+# formula Tf=(9/5)*Tc+32
+tf=$(echo "scale=2;((9/5) * $temp) + 32" |bc)
+echo "Sensor 3 (A01) $temp C = $tf F"
+
+### B01 ###
+# Read Temperature
+tempread=`cat /sys/bus/w1/devices/28-01131fb56f38/w1_slave`
+# Format
+temp=`echo "scale=2; "\`echo ${tempread##*=}\`" / 1000" | bc`
+
+# Output
+#echo "Sensor 4 (B01) temperature is " $temp "  C"
+
+# Output in Fahrenheit
+# formula Tf=(9/5)*Tc+32
+tf=$(echo "scale=2;((9/5) * $temp) + 32" |bc)
+echo "Sensor 4 (B01) $temp C = $tf F"

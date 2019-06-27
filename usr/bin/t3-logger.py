@@ -10,8 +10,8 @@ port = '18086'
 dbname = 'dctemps'
 user = ' '
 password = ' '
-temp_sensor1 = '/sys/bus/w1/devices/28-0316a194c4ff/w1_slave'
-#temp_sensor2 = '/sys/bus/w1/devices/28-041783780fff/w1_slave'
+#temp_sensor1 = '/sys/bus/w1/devices/28-0316a194c4ff/w1_slave'
+temp_sensor3 = '/sys/bus/w1/devices/28-0516a47f87ff/w1_slave'
 
 client = InfluxDBClient(influx_host, port, user, password, dbname)
 client.create_database(dbname)
@@ -21,7 +21,7 @@ os.system('modprobe w1-therm')
 
 
 def temp_raw():
-    f = open(temp_sensor1, 'r')
+    f = open(temp_sensor3, 'r')
     lines = f.readlines()
     f.close()
     return lines
@@ -42,7 +42,7 @@ def get_data_points():
     iso = time.ctime()
     json_body = [
             {
-                "measurement": "temp_sensor1_vessel_celcius",
+                "measurement": "temp_sensor3_vessel_celcius",
                 "tags": {"host": host},
                 "time": iso,
                 "fields": {
@@ -60,4 +60,3 @@ while True:
     client.write_points(json_body)
     print (json_body)
     time.sleep(1)
-

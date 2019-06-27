@@ -1,5 +1,6 @@
 ### add these to the root crontab (sudo crontab -e)
 
-@reboot /home/pi/t1_logger.py
-@reboot /home/pi/t2_logger.py
-
+@reboot /usr/bin/t1-watchdog
+@reboot /usr/bin/t2-watchdog
+@reboot /usr/bin/t3-watchdog
+@reboot /usr/bin/t4-watchdog
