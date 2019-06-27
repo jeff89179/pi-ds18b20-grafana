@@ -1,0 +1,7 @@
+#!/bin/bash
+### place in /usr/bin/ ###
+### t1_logger.py is also located in /usr/bin/ ###
+until t1_logger.py; do
+    echo "Server 't1_logger.py' crashed with exit code $?.  Respawning.." >&2
+    sleep 1
+done
