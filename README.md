@@ -19,3 +19,13 @@ Logger Scripts
 Watchdog Scripts
 - scripts came from here... https://stackoverflow.com/questions/696839/how-do-i-write-a-bash-script-to-restart-a-process-if-it-dies
 - each sensor must have its own script
+
+PREREQUISITES
+
+1-wire must be enabled from raspi-config>interface options
+"bc" package must be installed
+  apt install bc
+"influxdb" python module must be installed
+  pip install influxdb
+
+Also, don't forget to set your local and timezone in raspi-config...otherwise you'll be wondering where the hell your data is...
