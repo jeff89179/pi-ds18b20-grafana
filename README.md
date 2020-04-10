@@ -36,3 +36,11 @@ PREREQUISITES
 https://gpiozero.readthedocs.io/en/stable/remote_gpio.html
 
 Also, don't forget to set your locale to US and US Keyboard and timezone as UTC in raspi-config...otherwise you'll be wondering where the hell your data is...
+
+
+###
+For the time being, /usr/bin/start-loggers.sh has to be run manually. I haven't had any luck getting it to work with crontab or with rc.local.
+
+###
+SNMP config
+PENDING
