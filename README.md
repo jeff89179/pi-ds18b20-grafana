@@ -23,9 +23,16 @@ Watchdog Scripts
 PREREQUISITES
 
 1-wire must be enabled from raspi-config>interface options
+
+###
 "bc" package must be installed
   apt install bc
+
+###
 "influxdb" python module must be installed
   pip install influxdb
+
+###
+https://gpiozero.readthedocs.io/en/stable/remote_gpio.html
 
 Also, don't forget to set your local and timezone in raspi-config...otherwise you'll be wondering where the hell your data is...
