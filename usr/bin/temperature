@@ -1,0 +1,57 @@
+#! /bin/bash
+
+### B05 ###
+# Read Temperature
+tempread=`cat /sys/bus/w1/devices/28-0316a194c4ff/w1_slave`
+# Format
+temp=`echo "scale=2; "\`echo ${tempread##*=}\`" / 1000" | bc`
+
+# Output
+#echo "Sensor 1 (B05) temperature is " $temp "  C"
+
+# Output in Fahrenheit
+# formula Tf=(9/5)*Tc+32
+tf=$(echo "scale=2;((9/5) * $temp) + 32" |bc)
+echo "Sensor 1 (B05) $temp C = $tf F"
+
+### A05 ###
+# Read Temperature
+tempread=`cat /sys/bus/w1/devices/28-041783780fff/w1_slave`
+# Format
+temp=`echo "scale=2; "\`echo ${tempread##*=}\`" / 1000" | bc`
+
+# Output
+#echo "Sensor 2 (A05) temperature is " $temp "  C"
+
+# Output in Fahrenheit
+# formula Tf=(9/5)*Tc+32
+tf=$(echo "scale=2;((9/5) * $temp) + 32" |bc)
+echo "Sensor 2 (A05) $temp C = $tf F"
+
+### A01 ###
+# Read Temperature
+tempread=`cat /sys/bus/w1/devices/28-0516a47f87ff/w1_slave`
+# Format
+temp=`echo "scale=2; "\`echo ${tempread##*=}\`" / 1000" | bc`
+
+# Output
+#echo "Sensor 3 (A01) temperature is " $temp "  C"
+
+# Output in Fahrenheit
+# formula Tf=(9/5)*Tc+32
+tf=$(echo "scale=2;((9/5) * $temp) + 32" |bc)
+echo "Sensor 3 (A01) $temp C = $tf F"
+
+### B01 ###
+# Read Temperature
+tempread=`cat /sys/bus/w1/devices/28-01131fb56f38/w1_slave`
+# Format
+temp=`echo "scale=2; "\`echo ${tempread##*=}\`" / 1000" | bc`
+
+# Output
+#echo "Sensor 4 (B01) temperature is " $temp "  C"
+
+# Output in Fahrenheit
+# formula Tf=(9/5)*Tc+32
+tf=$(echo "scale=2;((9/5) * $temp) + 32" |bc)
+echo "Sensor 4 (B01) $temp C = $tf F"
